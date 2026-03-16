@@ -189,6 +189,7 @@ export default function HomeScreen() {
         setLoadingPredictions(true);
       } else {
         setPredictions([]);
+        setShowPredictions(true);
         setLoadingPredictions(true);
       }
 
@@ -518,6 +519,13 @@ export default function HomeScreen() {
                 <ActivityIndicator size="small" color={Colors.primary} style={{ marginLeft: 6 }} />
               )}
             </View>
+            {showPredictions && loadingPredictions && predictions.length === 0 && (
+              <View style={styles.predictionsContainer}>
+                <View style={{ padding: 14, alignItems: 'center' }}>
+                  <Text style={[styles.predictionSecondary, { fontStyle: 'italic' }]}>Searching...</Text>
+                </View>
+              </View>
+            )}
             {showPredictions && predictions.length > 0 && (
               <View style={styles.predictionsContainer}>
                 {predictions.map((prediction, index) => (
